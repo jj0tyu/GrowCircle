@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>GrowCircle</title>
+	<style>
+		body {
+			height: 98vh;
+			width: 98vw;
+			position: absolute;
+		}
+		.circle {
+			position: absolute;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		const body = document.body;
+		let point_list = [];
+		body.addEventListener('click', (event) => {
+			const x = event.clientX;
+			const y = event.clientY;
+			const time = Math.floor(Date.now() / 100);
+			point_list.push([x, y, time]);
+			console.log("clicked");
+		});
+
+		function growing() {
+			const now = Math.floor(Date.now() / 100);
+
+			console.log(point_list);
+			body.innerHTML = "";
+
+			for (let i = 0; i < point_list.length; i++) {
+				let rad = (now - point_list[i][2]);
+				let circle = `<div class=\"circle\" id=\"${i}\" style=\"background: rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)});width: ${rad}px; height: ${rad}px; top: ${point_list[i][1] - (rad / 2)}px; left: ${point_list[i][0] - (rad / 2)}px;\">`;
+				body.innerHTML += circle;
+			}
+		}
+
+		const grow = setInterval(growing, 100);
+	</script>
+</body>
+</html>
