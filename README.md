@@ -1,2 +1,2 @@
-This is he "draw-picture" repository.
-We enjoy the "drawing"!
+This is he "GrowCircle" repository.
+We enjoy the "Growing"!
